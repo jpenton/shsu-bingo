@@ -1,0 +1,27 @@
+{
+  "name": "shsu-bingo",
+  "version": "0.0.0",
+  "description": "Bingo for sayings by professors",
+  "main": "pages/index.tsx",
+  "repository": "git@github.com:jpenton/shsu-bingo.git",
+  "author": "Jonathan Penton <jonathan@penton.site>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "export": "next export",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.0.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "reactstrap": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "@types/react": "^16.9.2",
+    "@types/reactstrap": "^8.0.4",
+    "typescript": "^3.5.3"
+  }
+}
