@@ -6,12 +6,15 @@ import {
   // NavLink,
   Container
 } from "reactstrap";
+import Link from "next/link";
 
 function Header() {
   return (
     <Navbar color="dark" dark expand="md">
       <Container>
-        <NavbarBrand href="/">SHSU Bingo</NavbarBrand>
+        <Link href="/" passHref>
+          <NavbarBrand>SHSU Bingo</NavbarBrand>
+        </Link>
         {/* <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink href="/components/">Components</NavLink>

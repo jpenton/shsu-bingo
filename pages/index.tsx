@@ -1,5 +1,6 @@
 import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
 import Link from "next/link";
+import Head from "next/head";
 
 interface ICard {
   image: string;
@@ -20,11 +21,14 @@ const cards: ICard[] = [
 function HomePage() {
   return (
     <>
+      <Head>
+        <title>Home | SHSU Bingo</title>
+      </Head>
       <h1 style={{ marginBottom: "24px" }}>Choose Bingo Card:</h1>
       <Row>
         {cards.map((item, index) => (
           <Col key={index} xs={4}>
-            <Link href={`/cards/${item.name}`}>
+            <Link href="/cards/[cardId]" as={`/cards/${item.name}`}>
               <a>
                 <Card>
                   <CardImg top height="180px" src={item.image} />
