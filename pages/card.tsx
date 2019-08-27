@@ -25,6 +25,7 @@ function BingoCard() {
 
   for (var i = 0 ; i < 25 ; i++) {
     if (i === 12) {
+      populatedCard.push(null);
       continue;
     }
     const randNum = Math.floor(Math.random()*cellCopy.length)
