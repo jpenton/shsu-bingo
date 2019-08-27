@@ -28,7 +28,14 @@ function HomePage() {
       <Row>
         {cards.map((item, index) => (
           <Col key={index} xs={4}>
-            <Link href="/cards/[cardId]" as={`/cards/${item.name}`}>
+            <Link
+              href={{
+                pathname: "card",
+                query: {
+                  name: item.name
+                }
+              }}
+            >
               <a>
                 <Card>
                   <CardImg top height="180px" src={item.image} />
