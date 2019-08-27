@@ -9,11 +9,12 @@ interface ICard {
 
 const cards: ICard[] = [
   {
-    image: "https://source.unsplash.com/random/286x180",
+    image:
+      "https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg",
     name: "Burris"
   },
   {
-    image: "https://source.unsplash.com/random/286x180",
+    image: "https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg",
     name: "Cho"
   }
 ];
@@ -38,7 +39,7 @@ function HomePage() {
             >
               <a>
                 <Card>
-                  <CardImg top height="180px" src={item.image} />
+                  <CardImg top src={item.image} />
                   <CardBody>
                     <h5 className="card-title">{`Dr. ${item.name}`}</h5>
                   </CardBody>
