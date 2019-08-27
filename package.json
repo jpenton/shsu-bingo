@@ -13,12 +13,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "lodash": "^4.17.15",
     "next": "^9.0.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.138",
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
     "@types/reactstrap": "^8.0.4",

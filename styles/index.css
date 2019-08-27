@@ -1,0 +1,18 @@
+
+.bingo-row {
+    display: flex;
+}
+
+.bingo-cell {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    height: auto;
+    align-items: center;
+    border: solid 1px black;
+}
+.bingo-cell:before {
+    content: '';
+    float: left; 
+    padding-top: 100%;
+}
