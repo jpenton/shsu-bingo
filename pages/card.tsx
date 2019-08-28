@@ -12,15 +12,19 @@ interface IBingoCard {
   freeImage: string;
   spaces: IBingoCell[];
 }
-const CellStrings: Record<'Burris' | 'Cho', string[]> = { 
+const CellStrings: Record<'Burris' | 'Cho', string[]> & {[key: string]: string[]} = { 
   Burris: ['string1', 'string2'],
   Cho: ['cho1', 'cho2']
 }
 const freeImages = ['bur', 'cho'];
 
-function BingoCard() {
+interface IBingoCardProps {
+  profName: string;
+}
+
+function BingoCard({profName}: IBingoCardProps) {
   
-  const cellCopy = CellStrings.Burris;
+  const cellCopy = [...CellStrings[profName]];
   const populatedCard = [];
 
   for (var i = 0 ; i < 25 ; i++) {
@@ -62,7 +66,7 @@ function CardPage() {
         <title>{`${name ? `Dr. ${name}` : "Bingo Card"} | SHSU Bingo`}</title>
       </Head>
       {name ? <h1>{`Dr. ${name} Bingo Card`}</h1> : null}
-      <BingoCard/>
+      <BingoCard profName = {Array.isArray(name)? name[0] : name} />
     </>
   );
 }
