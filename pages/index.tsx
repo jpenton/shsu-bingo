@@ -1,6 +1,6 @@
-import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
-import Link from "next/link";
-import Head from "next/head";
+import { Card, CardImg, CardBody, Row, Col } from 'reactstrap';
+import Link from 'next/link';
+import Head from 'next/head';
 
 interface ICard {
   image: string;
@@ -10,13 +10,13 @@ interface ICard {
 const cards: ICard[] = [
   {
     image:
-      "https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg",
-    name: "Burris"
+      'https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg',
+    name: 'Burris',
   },
   {
-    image: "https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg",
-    name: "Cho"
-  }
+    image: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
+    name: 'Cho',
+  },
 ];
 
 function HomePage() {
@@ -25,16 +25,16 @@ function HomePage() {
       <Head>
         <title>Home | SHSU Bingo</title>
       </Head>
-      <h1 style={{ marginBottom: "24px" }}>Choose Bingo Card:</h1>
+      <h1 style={{ marginBottom: '24px' }}>Choose Bingo Card:</h1>
       <Row>
         {cards.map((item, index) => (
           <Col key={index} xs={4}>
             <Link
               href={{
-                pathname: "card",
+                pathname: 'card',
                 query: {
-                  name: item.name
-                }
+                  name: item.name,
+                },
               }}
             >
               <a>

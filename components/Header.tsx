@@ -4,9 +4,9 @@ import {
   // Nav,
   // NavItem,
   // NavLink,
-  Container
-} from "reactstrap";
-import Link from "next/link";
+  Container,
+} from 'reactstrap';
+import Link from 'next/link';
 
 function Header() {
   return (

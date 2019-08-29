@@ -1,9 +1,8 @@
-import React from "react";
-import App from "next/app";
-import Header from "../components/Header";
-import { Container } from "reactstrap";
+import React from 'react';
+import App from 'next/app';
+import Header from '../components/Header';
+import { Container } from 'reactstrap';
 import '../styles/index.css';
-
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -23,7 +22,7 @@ class MyApp extends App {
     return (
       <>
         <Header />
-        <Container style={{ marginTop: "12px" }}>
+        <Container style={{ marginTop: '12px' }}>
           <Component {...pageProps} />
         </Container>
       </>

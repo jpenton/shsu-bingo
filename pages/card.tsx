@@ -1,7 +1,7 @@
-import { useRouter } from "next/dist/client/router";
-import Head from "next/head";
-import React from "react";
-import _ from "lodash";
+import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
+import React from 'react';
+import _ from 'lodash';
 
 interface IBingoCell {
   text: string;
@@ -12,13 +12,13 @@ interface IBingoCard {
   freeImage: string;
   spaces: IBingoCell[];
 }
-const CellStrings: Record<"Burris" | "Cho", string[]> & {
+const CellStrings: Record<'Burris' | 'Cho', string[]> & {
   [key: string]: string[];
 } = {
-  Burris: ["string1", "string2"],
-  Cho: ["cho1", "cho2"]
+  Burris: ['string1', 'string2'],
+  Cho: ['cho1', 'cho2'],
 };
-const freeImages = ["bur", "cho"];
+const freeImages = ['bur', 'cho'];
 
 interface IBingoCardProps {
   profName: string;
@@ -69,7 +69,7 @@ function CardPage() {
   return (
     <>
       <Head>
-        <title>{`${name ? `Dr. ${name}` : "Bingo Card"} | SHSU Bingo`}</title>
+        <title>{`${name ? `Dr. ${name}` : 'Bingo Card'} | SHSU Bingo`}</title>
       </Head>
       <h1>{name ? `Dr. ${name} ` : null}Bingo Card</h1>
       {/* {name ? <h1>{`Dr. ${name} Bingo Card`}</h1> : null} */}
