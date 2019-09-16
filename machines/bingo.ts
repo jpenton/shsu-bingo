@@ -62,13 +62,9 @@ const bingoMachine = Machine<IBingoContext, any, IBingoEvent>(
           [4, 8, 12, 16, 20],
         ];
 
-        for (const line of winLines) {
-          if (line.every(index => ctx.cells[index].marked)) {
-            return true;
-          }
-        }
-
-        return false;
+        return winLines.some(lines =>
+          lines.every(index => ctx.cells[index].marked),
+        );
       },
     },
   },
