@@ -15,7 +15,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href="https://unpkg.com/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            href="https://rsms.me/inter/inter.css"
             type="text/css"
             rel="stylesheet"
           />

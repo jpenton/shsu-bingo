@@ -11,7 +11,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       'Professional Grade!!',
       '"Mickey Mouse Programming"',
       '"Are you/we satisfied??"',
-      '5x "Deal" [ ][ ][ ][ ][ ]',
+      '"Deal"',
       '"Wrong side of the tracks"',
       '"Road map fee"',
       '"Donald Knuth"',

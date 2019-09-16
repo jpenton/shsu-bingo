@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import React from 'react';
-import Card from '../components/Card';
+import Card from '../components/BingoCard';
 import { ProfessorName } from '../lib/professors';
 
 function CardPage() {

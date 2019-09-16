@@ -1,21 +1,13 @@
-import {
-  Navbar,
-  NavbarBrand,
-  // Nav,
-  // NavItem,
-  // NavLink,
-  Container,
-} from 'reactstrap';
 import Link from 'next/link';
+import Container from './Container';
 
 function Header() {
   return (
-    <Navbar color="dark" dark expand="md">
-      <Container>
-        <Link href="/" passHref>
-          <NavbarBrand>SHSU Bingo</NavbarBrand>
-        </Link>
-        {/* <Nav className="ml-auto" navbar>
+    <Container className="bg-cool-grey-800 py-3">
+      <Link href="/">
+        <a className="text-xl text-white font-medium">SHSU Bingo</a>
+      </Link>
+      {/* <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink href="/components/">Components</NavLink>
           </NavItem>
@@ -25,8 +17,7 @@ function Header() {
             </NavLink>
           </NavItem>
         </Nav> */}
-      </Container>
-    </Navbar>
+    </Container>
   );
 }
 
