@@ -8,7 +8,7 @@ function Container({
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
   return (
     <div className={classnames('flex justify-center', className)} {...rest}>
-      <div className="container">{children}</div>
+      <div className="w-full px-8 lg:px-20 xl:px-48">{children}</div>
     </div>
   );
 }

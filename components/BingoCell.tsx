@@ -13,9 +13,9 @@ function Cell({ className, image, marked, text, win, ...rest }: ICellProps) {
   return (
     <div
       className={classnames(
-        'bingo-cell flex flex-1 justify-center items-center select-none cursor-pointer p-2 text-center',
+        'bingo-cell flex flex-1 justify-center items-center select-none cursor-pointer p-2 text-center text-xs md:text-base',
         win
-          ? 'bg-teal-100 border-teal-200 hover:bg-teal-200 hover:border-teal-300'
+          ? 'bg-teal-100 border-teal-300 hover:bg-teal-200 hover:border-teal-400'
           : marked
           ? 'bg-light-blue-vivid-100 border-light-blue-vivid-200 hover:bg-light-blue-vivid-200 hover:border-light-blue-vivid-400'
           : 'bg-white border-cool-grey-200 hover:bg-light-blue-vivid-050 hover:border-light-blue-vivid-200',

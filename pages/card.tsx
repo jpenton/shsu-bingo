@@ -17,7 +17,9 @@ function CardPage() {
       </Head>
       <h1>{name ? `Dr. ${name} ` : null}Bingo Card</h1>
       {/* {name ? <h1>{`Dr. ${name} Bingo Card`}</h1> : null} */}
-      <Card professorName={Array.isArray(name) ? name[0] : name} />
+      <div className="flex justify-center">
+        <Card professorName={Array.isArray(name) ? name[0] : name} />
+      </div>
     </>
   );
 }

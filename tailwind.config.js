@@ -395,15 +395,17 @@ module.exports = {
       '6xl': '72rem',
       full: '100%',
     },
-    minHeight: {
-      '0': '0',
-      full: '100%',
-      screen: '100vh',
-    },
-    minWidth: {
-      '0': '0',
-      full: '100%',
-    },
+    minHeight: theme => ({
+      // '0': '0',
+      // full: '100%',
+      // screen: '100vh',
+      ...theme('height'),
+    }),
+    minWidth: theme => ({
+      // '0': '0',
+      // full: '100%',
+      ...theme('width'),
+    }),
     objectPosition: {
       bottom: 'bottom',
       center: 'center',
