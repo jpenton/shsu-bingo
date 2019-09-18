@@ -6,7 +6,7 @@ export interface IProfessor {
 
 const professors: Partial<Record<ProfessorName, IProfessor>> = {
   Burris: {
-    centerImage: '/static/profHat.png',
+    centerImage: '/static/img/burris_hat.png',
     isms: [
       'Professional Grade!!',
       '"Mickey Mouse Programming"',
