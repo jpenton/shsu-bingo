@@ -70,15 +70,15 @@ function BingoCard({ professorName, size = 5 }: IBingoCardProps) {
           {row.map((cell, cellIndex) => (
             <Cell
               className={classnames(
-                // rowIndex === 0 && cellIndex === 0 && 'rounded-tl-1/5',
-                // rowIndex === 0 && cellIndex === 4 && 'rounded-tr-1/5',
-                // rowIndex === 4 && cellIndex === 0 && 'rounded-bl-1/5',
-                // rowIndex === 4 && cellIndex === 4 && 'rounded-br-1/5',
-                // cellIndex !== 0 ? 'border-l' : 'border-l-2',
-                // cellIndex !== 4 ? 'border-r' : 'border-r-2',
-                // rowIndex !== 0 ? 'border-t' : 'border-t-2',
-                // rowIndex !== 4 ? 'border-b' : 'border-b-2',
-                'rounded-full m-2',
+                rowIndex === 0 && cellIndex === 0 && 'rounded-tl-1/5',
+                rowIndex === 0 && cellIndex === 4 && 'rounded-tr-1/5',
+                rowIndex === 4 && cellIndex === 0 && 'rounded-bl-1/5',
+                rowIndex === 4 && cellIndex === 4 && 'rounded-br-1/5',
+                cellIndex !== 0 ? 'border-l' : 'border-l-2',
+                cellIndex !== 4 ? 'border-r' : 'border-r-2',
+                rowIndex !== 0 ? 'border-t' : 'border-t-2',
+                rowIndex !== 4 ? 'border-b' : 'border-b-2',
+                // 'rounded-full m-2',
                 state.value === 'WINNER' && 'cursor-not-allowed',
               )}
               key={`cell-${rowIndex}-${cellIndex}`}
