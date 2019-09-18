@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 export interface IBingoCell {
   image?: string;
+  locked?: boolean;
   marked?: boolean;
   text?: string;
   win?: boolean;
@@ -28,6 +29,7 @@ function generateCells(professor: IProfessor, size: number): IBingoCell[] {
     if (size % 2 === 1 && i === centerIndex) {
       randomIsms.push({
         image: professor.centerImage,
+        locked: true,
         marked: true,
       });
       continue;
@@ -83,8 +85,13 @@ function BingoCard({ professorName, size = 5 }: IBingoCardProps) {
               )}
               key={`cell-${rowIndex}-${cellIndex}`}
               image={cell.image}
+              locked={cell.locked}
               marked={cell.marked}
-              onClick={onCellClick(rowIndex * size + cellIndex)}
+              onClick={
+                !cell.locked
+                  ? onCellClick(rowIndex * size + cellIndex)
+                  : undefined
+              }
               text={cell.text}
               win={cell.win}
             />
