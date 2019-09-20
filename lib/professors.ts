@@ -32,6 +32,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       '"If you do the *x* option, you should be able to do the *y* option."',
       '"In Ada..."',
       '"Fruit of the Loom"',
+      `"Nevermind"`,
     ],
   },
 };
