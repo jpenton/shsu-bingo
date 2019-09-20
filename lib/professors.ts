@@ -33,6 +33,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       '"In Ada..."',
       '"Fruit of the Loom"',
       `"Nevermind"`,
+      `"...and so on down the line"`,
     ],
   },
 };
