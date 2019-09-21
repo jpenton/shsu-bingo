@@ -77,7 +77,7 @@ function BingoCard({ professorName, size = 5 }: IBingoCardProps) {
     send('CLICK', { index: cellIndex });
 
   return (
-    <div className="bingo-table overflow-x-auto xl:w-1/2">
+    <div className="bingo-table overflow-x-auto">
       {/* {state.value === 'WINNER' ? <h1>WINNER</h1> : null} */}
       {_.chunk(state.context.cells, 5).map((row, rowIndex) => (
         <div className="flex" key={`row-${rowIndex}`}>
