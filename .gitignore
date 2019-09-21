@@ -89,3 +89,7 @@ typings/
 
 # Next.js
 out/
+
+# VSCode
+.vscode/
+.devcontainer/

@@ -1,7 +1,9 @@
+import { IBingoCell } from '../components/BingoCard';
+
 export type ProfessorName = 'Burris' | 'Cho';
 export interface IProfessor {
   centerImage: string;
-  isms: string[];
+  isms: (string | IBingoCell)[];
 }
 
 const professors: Partial<Record<ProfessorName, IProfessor>> = {
@@ -11,7 +13,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       'Professional Grade!!',
       '"Mickey Mouse Programming"',
       '"Are you/we satisfied??"',
-      '"Deal"',
+      { countMax: 5, text: '"Deal"', type: 'counter' },
       '"Wrong side of the tracks"',
       '"Road map fee"',
       '"Donald Knuth"',
@@ -34,6 +36,8 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       '"Fruit of the Loom"',
       `"Nevermind"`,
       `"...and so on down the line"`,
+      `"Script Kiddies"`,
+      `"Kiddie Grade"`,
     ],
   },
 };

@@ -2,6 +2,7 @@ import { Machine, EventObject, assign } from 'xstate';
 import { IBingoCell } from '../components/BingoCard';
 
 export interface IBingoContext {
+  cellIndex?: number;
   cells: IBingoCell[];
 }
 
@@ -34,15 +35,30 @@ const bingoMachine = Machine<IBingoContext, any, IBingoEvent>(
     initial: 'READY',
     states: {
       READY: {
-        entry: ['isWinner'],
         on: {
           CLICK: 'CLICKED',
+          '': [{ target: 'WINNER', cond: 'isWinner' }],
         },
       },
       CLICKED: {
-        entry: ['toggleCell'],
+        entry: ['setCellIndex'],
         on: {
-          '': [{ target: 'WINNER', cond: 'isWinner' }, { target: 'READY' }],
+          '': [
+            { target: 'INCREMENT_CELL', cond: 'isIncrementable' },
+            { target: 'TOGGLE_CELL' },
+          ],
+        },
+      },
+      TOGGLE_CELL: {
+        entry: ['toggleCell', 'removeCellIndex'],
+        on: {
+          '': 'READY',
+        },
+      },
+      INCREMENT_CELL: {
+        entry: ['incrementCell', 'removeCellIndex'],
+        on: {
+          '': 'READY',
         },
       },
       WINNER: {
@@ -52,21 +68,46 @@ const bingoMachine = Machine<IBingoContext, any, IBingoEvent>(
   },
   {
     actions: {
-      toggleCell: assign<IBingoContext, IBingoEvent>({
-        cells: (ctx, event) =>
+      incrementCell: assign<IBingoContext>({
+        cells: ctx =>
           ctx.cells.map((cell, index) => {
-            if (index === event.index) {
+            if (index === ctx.cellIndex) {
+              const count = cell.count + 1;
+
               return {
                 ...cell,
-                marked: !cell.marked,
+                ...(count === cell.countMax ? { marked: true } : {}),
+                count,
               };
             }
 
             return cell;
           }),
       }),
-      setWinnerCells: assign<IBingoContext, IBingoEvent>({
-        cells: (ctx, event) => {
+      toggleCell: assign<IBingoContext>({
+        cells: ctx =>
+          ctx.cells.map((cell, index) => {
+            if (index === ctx.cellIndex) {
+              const marked = !cell.marked;
+
+              return {
+                ...cell,
+                marked,
+                ...(!marked && cell.count !== undefined ? { count: 0 } : {}),
+              };
+            }
+
+            return cell;
+          }),
+      }),
+      removeCellIndex: assign<any>({
+        cellIndex: () => undefined,
+      }),
+      setCellIndex: assign<IBingoContext, IBingoEvent>({
+        cellIndex: (_, event) => event.index,
+      }),
+      setWinnerCells: assign<IBingoContext>({
+        cells: ctx => {
           const winnerCells = getWinnerCells(ctx.cells);
 
           if (!winnerCells) {
@@ -87,6 +128,15 @@ const bingoMachine = Machine<IBingoContext, any, IBingoEvent>(
       }),
     },
     guards: {
+      isIncrementable: ctx => {
+        const cell = ctx.cells[ctx.cellIndex];
+
+        if (cell.type === 'counter') {
+          return cell.count < cell.countMax;
+        }
+
+        return false;
+      },
       isWinner: ctx => !!getWinnerCells(ctx.cells),
     },
   },

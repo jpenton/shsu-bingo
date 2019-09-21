@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply font-sans bg-cool-grey-100;
+  @apply font-sans bg-cool-grey-050 text-cool-grey-800;
 }
 
 h1 {

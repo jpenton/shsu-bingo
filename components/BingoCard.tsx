@@ -8,10 +8,13 @@ import { useMachine } from '@xstate/react';
 import classnames from 'classnames';
 
 export interface IBingoCell {
+  count?: number;
+  countMax?: number;
   image?: string;
   locked?: boolean;
   marked?: boolean;
   text?: string;
+  type?: 'counter';
   win?: boolean;
 }
 
@@ -37,9 +40,18 @@ function generateCells(professor: IProfessor, size: number): IBingoCell[] {
 
     const randNum = Math.floor(Math.random() * ismsCopy.length);
     const [randIsm] = ismsCopy.splice(randNum, 1);
-    randomIsms.push({
-      text: randIsm,
-    });
+    randomIsms.push(
+      typeof randIsm === 'string'
+        ? {
+            text: randIsm,
+          }
+        : randIsm.type === 'counter'
+        ? {
+            ...randIsm,
+            count: 0,
+          }
+        : randIsm,
+    );
   }
 
   return randomIsms.slice(0, size ** 2);
@@ -71,11 +83,9 @@ function BingoCard({ professorName, size = 5 }: IBingoCardProps) {
         <div className="flex" key={`row-${rowIndex}`}>
           {row.map((cell, cellIndex) => (
             <Cell
+              count={cell.count}
+              countMax={cell.countMax}
               className={classnames(
-                rowIndex === 0 && cellIndex === 0 && 'rounded-tl-1/5',
-                rowIndex === 0 && cellIndex === 4 && 'rounded-tr-1/5',
-                rowIndex === 4 && cellIndex === 0 && 'rounded-bl-1/5',
-                rowIndex === 4 && cellIndex === 4 && 'rounded-br-1/5',
                 cellIndex !== 0 ? 'border-l' : 'border-l-2',
                 cellIndex !== 4 ? 'border-r' : 'border-r-2',
                 rowIndex !== 0 ? 'border-t' : 'border-t-2',
@@ -90,6 +100,21 @@ function BingoCard({ professorName, size = 5 }: IBingoCardProps) {
               onClick={
                 !cell.locked
                   ? onCellClick(rowIndex * size + cellIndex)
+                  : undefined
+              }
+              roundCorner={
+                rowIndex === 0
+                  ? cellIndex === 0
+                    ? 'top-left'
+                    : cellIndex === 4
+                    ? 'top-right'
+                    : undefined
+                  : rowIndex === 4
+                  ? cellIndex === 0
+                    ? 'bottom-left'
+                    : cellIndex === 4
+                    ? 'bottom-right'
+                    : undefined
                   : undefined
               }
               text={cell.text}
