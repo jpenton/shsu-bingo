@@ -5,6 +5,7 @@ export interface IProfessor {
   centerImage: string;
   isms: (string | IBingoCell)[];
   profileImage: string;
+  size: number;
 }
 
 const professors: Partial<Record<ProfessorName, IProfessor>> &
@@ -45,6 +46,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> &
     ],
     profileImage:
       'https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg',
+    size: 5,
   },
   Cho: {
     centerImage: '#',
@@ -59,6 +61,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> &
       `...that's only part of the story`,
     ],
     profileImage: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
+    size: 3,
   },
 };
 
