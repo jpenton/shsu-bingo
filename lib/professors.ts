@@ -4,9 +4,13 @@ export type ProfessorName = 'Burris' | 'Cho';
 export interface IProfessor {
   centerImage: string;
   isms: (string | IBingoCell)[];
+  profileImage: string;
 }
 
-const professors: Partial<Record<ProfessorName, IProfessor>> = {
+const professors: Partial<Record<ProfessorName, IProfessor>> &
+  {
+    [x in ProfessorName]: IProfessor;
+  } = {
   Burris: {
     centerImage: '/static/img/burris_hat.png',
     isms: [
@@ -39,6 +43,8 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       `"Script Kiddies"`,
       `"Kiddie Grade"`,
     ],
+    profileImage:
+      'https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg',
   },
   Cho: {
     centerImage: '#',
@@ -52,6 +58,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       `"DULL"`,
       `...that's only part of the story`,
     ],
+    profileImage: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
   },
 };
 
