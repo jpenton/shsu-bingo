@@ -40,6 +40,10 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       `"Kiddie Grade"`,
     ],
   },
+  Cho: {
+    centerImage: '#',
+    isms: [],
+  },
 };
 
 export default professors;
