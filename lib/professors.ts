@@ -38,6 +38,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
       `"...and so on down the line"`,
       `"Script Kiddies"`,
       `"Kiddie Grade"`,
+      `"Please come back. I get lonely when you're not here..."`,
     ],
   },
 };
