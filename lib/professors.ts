@@ -43,7 +43,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
   Cho: {
     centerImage: '#',
     isms: [
-      { countMax: 5, text: `"COME ON"`, type: 'counter' },
+      { countMax: 3, text: `"COME ON"`, type: 'counter' },
       `"Bad guy"`,
       `*Burris Noises*`,
       `*Something about GOD*`,
