@@ -42,7 +42,16 @@ const professors: Partial<Record<ProfessorName, IProfessor>> = {
   },
   Cho: {
     centerImage: '#',
-    isms: [],
+    isms: [
+      { countMax: 5, text: `"COME ON"`, type: 'counter' },
+      `"Bad guy"`,
+      `*Burris Noises*`,
+      `*Something about GOD*`,
+      `"If my son come home and say he gay, I SLAP HIM"`,
+      `"This guy"`,
+      `"DULL"`,
+      `...that's only part of the story`,
+    ],
   },
 };
 
