@@ -26,10 +26,10 @@ function Cell({
   ...rest
 }: ICellProps) {
   return (
-    <div className="min-w-32 min-h-32 w-32 h-32">
+    <div className="min-w-32 min-h-32 w-32 h-32 xl:w-40 xl:h-40 xl:min-w-40 xl:min-h-40">
       <div
         className={classnames(
-          'relative flex justify-center items-center select-none cursor-pointer p-2 text-center text-xs h-full w-full',
+          'relative flex justify-center items-center select-none cursor-pointer p-2 text-center text-xs xl:text-sm h-full w-full',
           roundCorner &&
             (roundCorner === 'top-left'
               ? 'rounded-tl-1/5'
@@ -61,7 +61,7 @@ function Cell({
         {count !== undefined && (
           <div
             className={classnames(
-              'absolute top-0 p-1 flex',
+              'absolute top-0 p-1 xl:p-2 flex',
               roundCorner === 'top-right' ? 'left-0' : 'right-0',
             )}
           >
@@ -74,7 +74,7 @@ function Cell({
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   className={classnames(
-                    'w-5 icon-check fill-current',
+                    'w-5 xl:w-6 icon-check fill-current',
                     index <= count - 1
                       ? 'text-cool-grey-700'
                       : 'text-cool-grey-200',
