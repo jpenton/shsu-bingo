@@ -2,23 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Container from '../components/Container';
 import Card from '../components/Card';
-
-interface ICard {
-  image: string;
-  name: string;
-}
-
-const cards: ICard[] = [
-  {
-    image:
-      'https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg',
-    name: 'Burris',
-  },
-  // {
-  //   image: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
-  //   name: 'Cho',
-  // },
-];
+import professors, { ProfessorName } from '../lib/professors';
 
 function HomePage() {
   return (
@@ -29,18 +13,21 @@ function HomePage() {
       <h1 style={{ marginBottom: '24px' }}>Choose Bingo Card:</h1>
       <Container>
         <div className="flex">
-          {cards.map((item, index) => (
-            <div className="w-1/3 mx-2" key={index}>
+          {Object.keys(professors).map((key: ProfessorName) => (
+            <div className="w-1/3 mx-2" key={`professor-${key}`}>
               <Link
                 href={{
                   pathname: 'card',
                   query: {
-                    name: item.name,
+                    name: key,
                   },
                 }}
               >
                 <a>
-                  <Card img={item.image} title={`Dr. ${item.name}`} />
+                  <Card
+                    img={professors[key].profileImage}
+                    title={`Dr. ${key}`}
+                  />
                 </a>
               </Link>
             </div>

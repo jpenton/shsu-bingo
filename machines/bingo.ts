@@ -10,23 +10,82 @@ export interface IBingoEvent extends EventObject {
   index: number;
 }
 
-function getWinnerCells(cells: IBingoCell[]) {
-  const winLines = [
-    [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9],
-    [10, 11, 12, 13, 14],
-    [15, 16, 17, 18, 19],
-    [20, 21, 22, 23, 24],
-    [0, 5, 10, 15, 20],
-    [1, 6, 11, 16, 21],
-    [2, 7, 12, 17, 22],
-    [3, 8, 13, 18, 23],
-    [4, 9, 14, 19, 24],
-    [0, 6, 12, 18, 24],
-    [4, 8, 12, 16, 20],
-  ];
+function getWinnerCells(cells: IBingoCell[]): number[] | undefined {
+  const size = Math.sqrt(cells.length);
 
-  return winLines.find(lines => lines.every(index => cells[index].marked));
+  for (let i = 0; i < size; i++) {
+    // check rows
+    for (let j = 0; j < size; j++) {
+      // Current cell
+      if (!cells[i * size + j].marked) {
+        break;
+      }
+
+      if (j === size - 1) {
+        return Array(size)
+          .fill(undefined)
+          .map((_, index) => i * size + index);
+      }
+    }
+
+    // check columns
+    for (let j = 0; j < size; j++) {
+      // Current cell
+      if (!cells[j * size + i].marked) {
+        break;
+      }
+
+      if (j === size - 1) {
+        return Array(size)
+          .fill(undefined)
+          .map((_, index) => i + size * index);
+      }
+    }
+  }
+
+  // Check TL => BR diagonal
+  for (let i = 0; i < size; i++) {
+    // Current cell
+    if (!cells[i * size + i].marked) {
+      break;
+    }
+
+    if (i === size - 1) {
+      return Array(size)
+        .fill(undefined)
+        .map((_, index) => index * size + index);
+    }
+  }
+
+  // Check BL => TR diagonal
+  /**
+   * size 4
+   * i = 4, cell 12
+   * i = 3, cell 9
+   * i = 2, cell 6
+   * i = 1, cell 3
+   *
+   * size 5
+   * i = 5, cell 20
+   * i = 4, cell 16
+   * i = 3, cell 12
+   * i = 2, cell 8
+   * i = 1, cell 4
+   */
+  for (let i = size; i > 0; i--) {
+    // Current cell
+    if (!cells[size ** 2 - size - (size - i) * (size - 1)].marked) {
+      break;
+    }
+
+    if (i === 1) {
+      return Array(size)
+        .fill(undefined)
+        .map(
+          (_, index) => size ** 2 - size - (size - (size - index)) * (size - 1),
+        );
+    }
+  }
 }
 
 const bingoMachine = Machine<IBingoContext, any, IBingoEvent>(
