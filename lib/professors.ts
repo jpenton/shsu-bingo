@@ -5,7 +5,6 @@ export interface IProfessor {
   centerImage: string;
   isms: (string | IBingoCell)[];
   profileImage: string;
-  size: number;
 }
 
 const professors: Partial<Record<ProfessorName, IProfessor>> &
@@ -47,7 +46,6 @@ const professors: Partial<Record<ProfessorName, IProfessor>> &
     ],
     profileImage:
       'https://cs.shsu.edu/dotAsset/05835d24-63bd-4a76-a63a-50dccf4144ad.jpg',
-    size: 5,
   },
   Cho: {
     centerImage: '#',
@@ -56,13 +54,13 @@ const professors: Partial<Record<ProfessorName, IProfessor>> &
       `"Bad guy"`,
       `*Burris Noises*`,
       `*Something about GOD*`,
-      `"If my son come home and say he gay, I SLAP HIM"`,
       `"This guy"`,
       `"DULL"`,
-      `...that's only part of the story`,
+      `"...that's only part of the story"`,
+      `"You are abnormal"`,
+      `"...gee"`,
     ],
     profileImage: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
-    size: 3,
   },
 };
 

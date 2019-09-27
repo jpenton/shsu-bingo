@@ -23,8 +23,7 @@ interface IBingoCardProps {
   size?: number;
 }
 
-function generateCells(professor: IProfessor): IBingoCell[] {
-  const { size } = professor;
+function generateCells(professor: IProfessor, size: number): IBingoCell[] {
   const centerIndex = Math.floor(size / 2) * size + Math.floor(size / 2);
   const ismsCopy = [...professor.isms];
   const randomIsms: IBingoCell[] = [];
@@ -58,16 +57,33 @@ function generateCells(professor: IProfessor): IBingoCell[] {
   return randomIsms.slice(0, size ** 2);
 }
 
+function getSize(length: number): number {
+  const initSize = Math.sqrt(length);
+
+  if (initSize % 1 === 0) {
+    return initSize > 5 ? 5 : initSize;
+  }
+
+  const initSizePlus1 = Math.sqrt(length + 1);
+
+  if (initSizePlus1 % 1 === 0 && initSizePlus1 % 2 === 1) {
+    return initSizePlus1 > 5 ? 5 : initSizePlus1;
+  }
+
+  return Math.floor(initSize);
+}
+
 function BingoCard({ professorName }: IBingoCardProps) {
   if (!professorName) {
     return null;
   }
 
   const professor = professors[professorName];
+  const size = getSize(professor.isms.length);
   const persistedBingoMachine = bingoMachine.withConfig(
     {},
     {
-      cells: generateCells(professor),
+      cells: generateCells(professor, size),
     },
   );
   const [state, send] = useMachine<IBingoContext, IBingoEvent>(
@@ -80,7 +96,7 @@ function BingoCard({ professorName }: IBingoCardProps) {
   return (
     <div className="bingo-table overflow-x-auto">
       {/* {state.value === 'WINNER' ? <h1>WINNER</h1> : null} */}
-      {_.chunk(state.context.cells, professor.size).map((row, rowIndex) => (
+      {_.chunk(state.context.cells, size).map((row, rowIndex) => (
         <div className="flex" key={`row-${rowIndex}`}>
           {row.map((cell, cellIndex) => (
             <Cell
@@ -88,9 +104,9 @@ function BingoCard({ professorName }: IBingoCardProps) {
               countMax={cell.countMax}
               className={classnames(
                 cellIndex !== 0 ? 'border-l' : 'border-l-2',
-                cellIndex !== professor.size - 1 ? 'border-r' : 'border-r-2',
+                cellIndex !== size - 1 ? 'border-r' : 'border-r-2',
                 rowIndex !== 0 ? 'border-t' : 'border-t-2',
-                rowIndex !== professor.size - 1 ? 'border-b' : 'border-b-2',
+                rowIndex !== size - 1 ? 'border-b' : 'border-b-2',
                 // 'rounded-full m-2',
                 state.value === 'WINNER' && 'cursor-not-allowed',
               )}
@@ -100,20 +116,20 @@ function BingoCard({ professorName }: IBingoCardProps) {
               marked={cell.marked}
               onClick={
                 !cell.locked
-                  ? onCellClick(rowIndex * professor.size + cellIndex)
+                  ? onCellClick(rowIndex * size + cellIndex)
                   : undefined
               }
               roundCorner={
                 rowIndex === 0
                   ? cellIndex === 0
                     ? 'top-left'
-                    : cellIndex === professor.size - 1
+                    : cellIndex === size - 1
                     ? 'top-right'
                     : undefined
-                  : rowIndex === professor.size - 1
+                  : rowIndex === size - 1
                   ? cellIndex === 0
                     ? 'bottom-left'
-                    : cellIndex === professor.size - 1
+                    : cellIndex === size - 1
                     ? 'bottom-right'
                     : undefined
                   : undefined
