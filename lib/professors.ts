@@ -59,6 +59,7 @@ const professors: Partial<Record<ProfessorName, IProfessor>> &
       `"...that's only part of the story"`,
       `"You are abnormal"`,
       `"...gee"`,
+      `"I don't like you"`,
     ],
     profileImage: 'https://cs.shsu.edu/images/2017-faculty/Dr.+Cho.jpg',
   },
