@@ -11,6 +11,9 @@ jobs:
             - v1-yarn-deps-deploy-{{ checksum "yarn.lock" }}
             - v1-yarn-deps-deploy-
       - run:
+          name: Install Dependencies
+          command: yarn install
+      - run:
           name: Build
           command: yarn deploy
       - run:
