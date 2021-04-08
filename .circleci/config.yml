@@ -1,0 +1,39 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-deps-deploy-{{ checksum "yarn.lock" }}
+            - v1-yarn-deps-deploy-
+      - run:
+          name: Build
+          command: yarn deploy
+      - run:
+          name: Deploy Site
+          command: yarn netlify deploy --prod
+      - save_cache:
+          key: v1-yarn-deps-deploy-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+            - ./.next/cache
+
+# Orchestrate our job run sequence
+workflows:
+  deploy:
+    jobs:
+      - approve:
+          type: approval
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - approve
+          context:
+            - netlify
+            - shsu-bingo
